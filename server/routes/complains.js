@@ -6,7 +6,14 @@ const router = express.Router();
 router.use(authoriseUser);
 
 router.post("/", async (req, res) => {
-  const complain = new Complain(req.body);
+  console.log(req.body);
+  const complain = req.body.anonymous
+    ? new Complain({ ...req.body, role: req.user.role })
+    : new Complain({
+        ...req.body,
+        submittedBy: req.user.username,
+      });
+
   try {
     await complain.save();
     return res.status(201).send("Complain registered successfully.");
