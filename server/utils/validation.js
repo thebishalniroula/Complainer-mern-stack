@@ -1,7 +1,7 @@
 const Joi = require("joi");
 function validateNewUser(user) {
   const newUserSchema = Joi.object({
-    role: Joi.string().valid("admin", "student", "guardian"),
+    role: Joi.string().valid("admin", "student", "guardian").required(),
     username: Joi.string().min(3).max(24).required(),
     password: Joi.string().min(5).max(50).required(),
     email: Joi.string().email().required(),
@@ -10,6 +10,7 @@ function validateNewUser(user) {
 }
 function validateExistingUser(user) {
   const newUserSchema = Joi.object({
+    role: Joi.string().valid("admin", "student", "guardian").required(),
     username: Joi.string().min(3).max(24).required(),
     password: Joi.string().min(5).max(50).required(),
   });

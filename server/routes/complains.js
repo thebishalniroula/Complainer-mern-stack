@@ -11,6 +11,7 @@ router.post("/", async (req, res) => {
     ? new Complain({ ...req.body, role: req.user.role })
     : new Complain({
         ...req.body,
+        role: req.user.role,
         submittedBy: req.user.username,
       });
 
@@ -36,8 +37,8 @@ router.delete("/:id", async (req, res) => {
   if (!complain)
     return res.status(404).send("Deletion failed. Resource does not exist.");
   try {
-    await Complain.findByIdAndDelete(id);
-    res.status(204).send("Complain deleted successfully.");
+    const complainDeleted = await Complain.findByIdAndDelete(id);
+    res.status(200).json(complain);
   } catch (error) {
     res.status(500).send("Some error occured deleting the complain.");
   }

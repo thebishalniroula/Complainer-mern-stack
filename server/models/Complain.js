@@ -17,6 +17,10 @@ const complainSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  at: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 module.exports = mongoose.model("complain", complainSchema);
