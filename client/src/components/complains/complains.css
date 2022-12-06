@@ -1,0 +1,44 @@
+.complains {
+  max-width: 65rem;
+  /* background-color: red; */
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 5%;
+  color: rgb(92, 90, 90);
+}
+.complain {
+  background-color: rgba(210, 210, 210, 0.224);
+  padding: 1rem 1rem 1rem 1rem;
+  position: relative;
+}
+.complain button {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  margin-top: 0.5rem;
+  border: none;
+  padding: 5px 5px;
+  background-color: rgba(230, 27, 27, 0.621);
+}
+.complain button:hover {
+  background-color: rgba(255, 0, 0, 0.97);
+}
+.meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+.meta p {
+  color: rgb(72, 72, 72);
+}
+.meta span {
+  color: rgb(109, 109, 109);
+}
+h3 {
+  color: rgb(53, 53, 53);
+}

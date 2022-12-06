@@ -1,0 +1,20 @@
+.navigation {
+  display: flex;
+  padding: 1rem 5%;
+  justify-content: space-between;
+  background-color: aquamarine;
+}
+.navigation .links {
+  list-style-type: none;
+  display: flex;
+  gap: 2rem;
+}
+.navigation .links a {
+  text-decoration: none;
+}
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 0.05cm;
+  color: rgb(76, 75, 74);
+}

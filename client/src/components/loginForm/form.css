@@ -1,0 +1,29 @@
+.login-form input {
+  display: block;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  height: 3rem;
+  border: 0px;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+.login-form {
+  text-align: center;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-form form {
+  background-color: rgb(206 206 206);
+  border-radius: 10px;
+  padding: 1rem 2rem 2rem 2rem;
+  margin: auto;
+  width: 25rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

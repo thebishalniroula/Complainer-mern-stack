@@ -1,0 +1,41 @@
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+  height: 40rem;
+}
+.cards {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.roleCard {
+  /* border: 2px solid rgb(164, 164, 223); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(104, 210, 171, 0.737);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.roleCard:hover {
+  /* transition: cubic-bezier(0.075, 0.82, 0.165, 1); */
+  transition: 0.08s ease-out;
+  transform: scale(1.01) translateY(-3px);
+}
+.roleCard img {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+}
+a {
+  text-decoration: none;
+}
