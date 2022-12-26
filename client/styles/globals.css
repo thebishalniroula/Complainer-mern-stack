@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppins";
+}
+body {
+  overflow: hidden;
+}
+.btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: rgb(14, 184, 40);
+  border-radius: 10px;
+  color: rgb(26, 26, 27);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: rgb(14, 174, 38);
+  /* color: rgb(207, 207, 207); */
+}
