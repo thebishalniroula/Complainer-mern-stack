@@ -1,9 +1,9 @@
-/assets
+assets
 /server/node_modules
 /server/build
-server/.env
+/server/.env
 
-
+node_modules
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
@@ -16,11 +16,11 @@ server/.env
 /client/coverage
 
 # next.js
-/client/.next/
-/client/out/
+client/.next/
+client/out/
 
 # production
-/client/build
+client/build
 
 # misc
 /client/.DS_Store
