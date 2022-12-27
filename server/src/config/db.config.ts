@@ -1,7 +1,9 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+
 mongoose.set("strictQuery", false);
-module.exports = (conn_string: String) =>
-  mongoose.connect(conn_string, (err: Error) => {
+
+export const connectToDb = (conn_string: string) =>
+  mongoose.connect(conn_string, (err: any) => {
     if (err) {
       return console.error("Connection to db failed.", err);
     }

@@ -1,6 +1,16 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 
-const userSchema = new mongoose.Schema({
+export interface UserType {
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+  avatar?: string;
+  complains?: Types.ObjectId[];
+  role: "organization" | "user";
+}
+
+const userSchema = new mongoose.Schema<UserType>({
   name: {
     type: String,
     required: true,
@@ -34,4 +44,5 @@ const userSchema = new mongoose.Schema({
     enum: ["organization", "user"],
   },
 });
-export default mongoose.model("user", userSchema);
+
+export default mongoose.model<UserType>("user", userSchema);
