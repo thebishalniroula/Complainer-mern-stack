@@ -5,11 +5,18 @@ import {
   validateNewUser,
 } from "../utils/validators/user";
 import { createUser, findByEmailOrPassword } from "../services/user.services";
-import User from "../Models/User";
+import User, { UserType } from "../Models/User";
+import { compareHash } from "../utils/hashString";
+import { Types } from "mongoose";
 
 interface RequestWithFile extends Request {
   files: {
     [key: string]: UploadedFile;
+  };
+}
+export interface RequestWithUser extends Request {
+  user?: UserType & {
+    _id: Types.ObjectId;
   };
 }
 
@@ -38,29 +45,55 @@ export const registerUser = async (
   }
   try {
     const user = await createUser(req.body, req.files.avatar);
-    return res.status(200).json({ success: true, user });
+    return res.status(200).json({
+      success: true,
+      user: {
+        username: user.username,
+        email: user.email,
+        avatar: user.avatar,
+        complains: user.complains,
+        role: user.role,
+      },
+    });
   } catch (error: any) {
     return res.status(500).json({ success: false, message: error });
   }
 };
 
-export const loginUser = async (
-  req: RequestWithFile,
-  res: Response,
-  next: NextFunction
-) => {
+export const loginUser = async (req: RequestWithUser, res: Response) => {
+  //input validation
   const { value, error } = validateExistingUser(req.body);
   if (error) {
     return res.json({ success: false, message: error.details[0].message });
   }
+
   try {
     const userExist = await findByEmailOrPassword(value.usernameOrEmail);
-    if (userExist) {
-      if (userExist.password === value.password) {
-        return res.status(200).json(userExist);
-      } else return res.status(200).json({ message: "pw doesnt match" });
-    }
-    return res.status(200).json({ message: "User doesnt exist" });
+    if (!userExist)
+      return res.status(403).json({
+        success: false,
+        message: "Please recheck your credentials.",
+      });
+
+    const checkPassword = await compareHash(value.password, userExist.password);
+
+    if (checkPassword) {
+      req.user = userExist;
+      return res.status(200).json({
+        sucess: true,
+        message: "User found",
+        user: {
+          username: userExist.username,
+          email: userExist.email,
+          avatar: userExist.avatar,
+          complains: userExist.complains,
+          role: userExist.role,
+        },
+      });
+    } else
+      return res
+        .status(403)
+        .json({ message: "Please recheck your credentials." });
   } catch (error: any) {
     return res
       .status(500)

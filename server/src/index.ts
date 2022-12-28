@@ -1,8 +1,10 @@
 import express from "express";
 import fileUpload from "express-fileupload";
-import userRouter from "./routes/user.route";
+import userRouter from "./routes/user.routes";
+import complainsRouter from "./routes/complains.routes";
 import { connectToDb } from "./config/db.config";
 import { configureCloudinary } from "./config/cloudinary.config";
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 //Configuring env vars for developement
@@ -25,6 +27,7 @@ app.use(
 
 //Routes
 app.use("/api/user", userRouter);
+app.use("/api/complains", complainsRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

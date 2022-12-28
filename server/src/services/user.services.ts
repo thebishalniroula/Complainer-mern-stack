@@ -2,7 +2,7 @@ import { Document, HydratedDocument, Types } from "mongoose";
 import User, { UserType } from "../Models/User";
 import saveFileToCloudinary from "../utils/saveFileToCloudinary";
 import { UploadedFile } from "express-fileupload";
-import { hashString } from "../utils/encryptString";
+import { hashString } from "../utils/hashString";
 
 export const createUser = async (
   userDetails: UserType,

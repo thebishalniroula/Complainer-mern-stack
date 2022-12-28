@@ -19,7 +19,7 @@ const newUserSchema = Joi.object<NewUserType>({
     .required(),
   repeat_password: Joi.any().equal(Joi.ref("password")).required(),
   role: Joi.string().valid("organization", "user").required(),
-  complains: [String],
+  complains: Joi.array().items(Joi.string()),
 });
 
 const existingUserSchema = Joi.object<ExistingUserType>({
@@ -41,9 +41,3 @@ export const validateExistingUser = (
 ): Joi.ValidationResult<ExistingUserType> => {
   return existingUserSchema.validate(user);
 };
-console.log(
-  validateExistingUser({
-    usernameOrEmail: "aksdfkjas",
-    password: "kasjdfkhjasd",
-  })
-);
