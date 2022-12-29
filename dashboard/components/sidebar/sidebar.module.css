@@ -1,0 +1,86 @@
+.sidebarContainer {
+  position: sticky;
+  position: -webkit-sticky;
+  align-self: flex-start;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rebeccapurple;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  /* -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out; */
+  transition: width 0.1s ease-out;
+}
+.sidebarContainer.maximize {
+  padding: 1.5rem 1rem;
+  width: 15rem;
+}
+.sidebarContainer.minimize {
+  padding: 1.5rem 0.5rem;
+  width: 5rem;
+}
+.sidebarContainer .sidebarItem {
+  padding: 1rem 1rem;
+  color: rgb(239, 239, 239);
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+}
+.sidebarContainer .sidebarItem:hover {
+  background-color: rgb(123, 65, 180);
+}
+.sidebarContainer .sidebarItem.active {
+  background-color: rgba(216, 216, 216, 0.781);
+
+  color: rgb(59, 59, 59);
+}
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.controls .close {
+  color: rgb(239, 239, 239);
+  font-size: 1.5rem;
+  padding: 0 1rem;
+
+  cursor: pointer;
+}
+
+.controls .logo {
+  color: rgb(255, 255, 255);
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  cursor: pointer;
+}
+
+.sidebarContainer::-webkit-scrollbar {
+  width: 8px;
+  visibility: hidden;
+}
+
+/* Track */
+.sidebarContainer::-webkit-scrollbar-track {
+  background: rebeccapurple;
+}
+
+/* Handle */
+.sidebarContainer::-webkit-scrollbar-thumb {
+  background: rgb(152, 87, 217);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.sidebarContainer::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

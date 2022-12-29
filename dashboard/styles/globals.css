@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppins";
+}
+
+.appContainer {
+  display: flex;
+}
+.app {
+  height: 200vh;
+  font-family: "Roboto", sans-serif;
+  flex-grow: 1;
+  padding: 5rem 2rem;
+}
