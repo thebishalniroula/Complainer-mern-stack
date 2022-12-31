@@ -1,0 +1,43 @@
+.editProfileModel {
+  min-width: 20rem;
+  color: aliceblue;
+}
+.heading {
+  margin-bottom: 1rem;
+  color: rgb(223, 227, 231);
+  font-weight: 500;
+}
+.editProfileModel form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.editProfileModel form label {
+  color: rgb(221, 221, 221);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.1rem;
+}
+.editProfileModel form div > input {
+  width: 100%;
+  height: 3rem;
+  background-color: rgb(41, 15, 66);
+  color: rgb(221, 221, 221);
+  border: none;
+  font-size: 0.95rem;
+  padding: 0rem 1rem;
+}
+.editProfileModel form div > *:focus {
+  outline: 2px solid purple;
+}
+.editProfileModel form button {
+  padding: 0.8rem;
+  background-color: blueviolet;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+.editProfileModel form button:hover {
+  background-color: rgb(109, 24, 190);
+}

@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TabState {
-  value: number;
+  value: number | null;
 }
 const initialState: TabState = {
-  value: 0,
+  value: null,
 };
 
 export const tabsSlice = createSlice({
   name: "tabs",
   initialState,
   reducers: {
-    switchTab: (state, actions: PayloadAction<number>) => {
+    switchTab: (state, actions: PayloadAction<number | null>) => {
       state.value = actions.payload;
     },
   },

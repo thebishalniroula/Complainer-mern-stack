@@ -1,0 +1,34 @@
+.navContainer {
+  padding: 0.5rem 2rem;
+  position: fixed;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  background-color: aliceblue;
+  z-index: 10;
+}
+
+.profilePhoto {
+  height: 2rem;
+  width: 2rem;
+  background-color: blueviolet;
+  border-radius: 50%;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: rgb(221, 223, 224);
+  font-weight: 500;
+}
+.profileContainer {
+  position: relative;
+}
+.navProfileModel {
+  position: absolute;
+  top: 4.5rem;
+  transform: translateX(-50%);
+}

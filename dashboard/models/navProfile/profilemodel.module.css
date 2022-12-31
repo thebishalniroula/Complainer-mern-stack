@@ -1,0 +1,26 @@
+.profileModel {
+  background-color: blueviolet;
+  border-radius: 10px;
+  color: aliceblue;
+  position: relative;
+  padding: 0.5rem 0;
+}
+.profileModel a {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: aliceblue;
+}
+.profileModel a:hover {
+  color: rgb(205, 202, 202);
+}
+.arrow {
+  color: blueviolet;
+  position: absolute;
+  top: 0rem;
+  right: 40%;
+  transform: translate(130%, -90%);
+}

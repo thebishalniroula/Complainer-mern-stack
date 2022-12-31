@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../features/counter/counterSlice";
 import tabsReducer from "../features/counter/tabsSlice";
+import sidebarMaximizeReducer from "../features/counter/sidebarMaximizeSlice";
+import modelsReducer from "../features/counter/modelsSlice";
+// import
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     tabs: tabsReducer,
+    sidebar: sidebarMaximizeReducer,
+    models: modelsReducer,
   },
 });
 

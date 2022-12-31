@@ -2,16 +2,21 @@ import type { ReactNode } from "react";
 import Sidebar from "../sidebar/Sidebar";
 import { store } from "../../store/store";
 import { Provider } from "react-redux";
-import Navbar from "../navbar/Navbar";
+import Navbar from "../navbar/nav/Navbar";
+import Main from "../main/App";
+import AppContainer from "../appContainer/AppContainer";
+import Models from "../ModelsWrapper/ModelsWrapper";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <Provider store={store}>
-      <main className="appContainer">
+      <AppContainer>
         <Sidebar />
         <Navbar />
-        <div className="app">{children}</div>
-      </main>
+        <Main>{children}</Main>
+      </AppContainer>
+      //models
+      <Models />
     </Provider>
   );
 };
