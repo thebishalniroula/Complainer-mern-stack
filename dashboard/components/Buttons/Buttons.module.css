@@ -1,0 +1,27 @@
+.button {
+  border: none;
+  /* padding: 0.8rem 1.5rem; */
+  padding: 0 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 3.15rem;
+}
+.primary:hover {
+  color: aliceblue;
+  background-color: rgb(117, 29, 199);
+}
+.primary {
+  background-color: blueviolet;
+  color: rgb(255, 255, 255);
+}
+
+.secondary {
+  background-color: rgb(230, 227, 233);
+  border: 3px solid rgba(137, 43, 226, 0.635);
+  color: rgb(52, 50, 50);
+}
+.secondary:hover {
+  color: rgb(64, 64, 64);
+  background-color: rgb(213, 208, 220);
+}

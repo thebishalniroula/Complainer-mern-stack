@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-
+import mongoose from "mongoose";
 const complainSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -14,9 +13,8 @@ const complainSchema = new mongoose.Schema({
     unique: true,
   },
   user: {
-    type: mongoose.Schema.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
 });
-module.exports = mongoose.model("complain", complainSchema);
-export {};
+export default mongoose.model("complain", complainSchema);

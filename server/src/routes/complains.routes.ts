@@ -1,6 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
 const complainsRouter = express.Router();
-import { registerUser, loginUser } from "../controllers/user.controller";
 import { RequestWithUser } from "../controllers/user.controller";
 
 const checkUser = (req: RequestWithUser, res: Response, next: NextFunction) => {

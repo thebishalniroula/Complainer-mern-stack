@@ -15,7 +15,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <Navbar />
         <Main>{children}</Main>
       </AppContainer>
-      //models
       <Models />
     </Provider>
   );

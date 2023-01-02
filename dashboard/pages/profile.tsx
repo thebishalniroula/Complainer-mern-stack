@@ -4,7 +4,8 @@ import { CgProfile } from "react-icons/cg";
 import { AiOutlineMail } from "react-icons/ai";
 import { useAppDispatch } from "../store/hooks";
 import { setEditProfileModel } from "../features/counter/modelsSlice";
-const profile = () => {
+import PrimaryButton from "../components/Buttons/Primary/Button";
+const Profile = () => {
   const dispatch = useAppDispatch();
   return (
     <div className={styles.profileContainer}>
@@ -23,12 +24,13 @@ const profile = () => {
         </p>
       </div>
       <div className={styles.editProfile}>
-        <button onClick={() => dispatch(setEditProfileModel())}>
-          Edit profile
-        </button>
+        <PrimaryButton
+          text={"Edit profile"}
+          onClickHandler={() => dispatch(setEditProfileModel())}
+        />
       </div>
     </div>
   );
 };
 
-export default profile;
+export default Profile;

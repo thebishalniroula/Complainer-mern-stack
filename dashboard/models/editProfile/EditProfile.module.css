@@ -26,9 +26,10 @@
   border: none;
   font-size: 0.95rem;
   padding: 0rem 1rem;
+  border-radius: 5px;
 }
 .editProfileModel form div > *:focus {
-  outline: 2px solid purple;
+  outline: 2px solid rgb(223, 223, 223);
 }
 .editProfileModel form button {
   padding: 0.8rem;

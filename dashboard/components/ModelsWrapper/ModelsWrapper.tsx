@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import styles from "./ModelsWrapper.module.css";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import EditProfile from "../../models/editProfile/EditProfile";
@@ -11,13 +11,16 @@ const Models = () => {
   const atLeastOneModelActive = Object.values(models).find(
     (value, idx) => idx !== 0 && value === true
   );
-  useLayoutEffect(() => {
+
+  useEffect(() => {
     if (typeof window !== "undefined" && atLeastOneModelActive) {
       document.body.style.height = "100vh";
       document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.height = "unset";
+      document.body.style.overflow = "unset";
     }
-    () => (document.body.style.height = "unset");
-  }, [models]);
+  }, [atLeastOneModelActive]);
 
   return (
     <>
@@ -26,7 +29,7 @@ const Models = () => {
         className={atLeastOneModelActive && styles.modeloverlay}
         onClick={() => dispatch(resetAllmodel())}
       ></div>
-      {models.editProfileModel && <EditProfile />}{" "}
+      {models.editProfileModel && <EditProfile />}
     </>
   );
 };

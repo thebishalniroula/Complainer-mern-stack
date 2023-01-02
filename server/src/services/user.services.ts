@@ -14,7 +14,7 @@ export const createUser = async (
     }
 > => {
   try {
-    const result = await saveFileToCloudinary(avatar);
+    const result = await saveFileToCloudinary(avatar, userDetails.username);
     const user: HydratedDocument<UserType> = new User({
       ...userDetails,
       password: await hashString(userDetails.password),
@@ -32,13 +32,7 @@ export const createUser = async (
 
 export const findByEmailOrPassword = async (
   usernameOrEmail: string
-): Promise<
-  | (Document<unknown, any, UserType> &
-      UserType & {
-        _id: Types.ObjectId;
-      })
-  | null
-> => {
+): Promise<HydratedDocument<UserType> | null> => {
   try {
     return await User.findOne({
       $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],

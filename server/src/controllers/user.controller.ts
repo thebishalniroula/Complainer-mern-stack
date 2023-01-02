@@ -8,7 +8,7 @@ import { createUser, findByEmailOrPassword } from "../services/user.services";
 import User, { UserType } from "../Models/User";
 import { compareHash } from "../utils/hashString";
 import { Types } from "mongoose";
-
+import * as token from "../utils/authToken";
 interface RequestWithFile extends Request {
   files: {
     [key: string]: UploadedFile;
@@ -20,11 +20,7 @@ export interface RequestWithUser extends Request {
   };
 }
 
-export const registerUser = async (
-  req: RequestWithFile,
-  res: Response,
-  next: NextFunction
-) => {
+export const registerUser = async (req: RequestWithFile, res: Response) => {
   const { value, error } = validateNewUser(req.body);
   if (error) {
     return res.status(400).json({ success: false, message: error.details[0] });
@@ -57,46 +53,5 @@ export const registerUser = async (
     });
   } catch (error: any) {
     return res.status(500).json({ success: false, message: error });
-  }
-};
-
-export const loginUser = async (req: RequestWithUser, res: Response) => {
-  //input validation
-  const { value, error } = validateExistingUser(req.body);
-  if (error) {
-    return res.json({ success: false, message: error.details[0].message });
-  }
-
-  try {
-    const userExist = await findByEmailOrPassword(value.usernameOrEmail);
-    if (!userExist)
-      return res.status(403).json({
-        success: false,
-        message: "Please recheck your credentials.",
-      });
-
-    const checkPassword = await compareHash(value.password, userExist.password);
-
-    if (checkPassword) {
-      req.user = userExist;
-      return res.status(200).json({
-        sucess: true,
-        message: "User found",
-        user: {
-          username: userExist.username,
-          email: userExist.email,
-          avatar: userExist.avatar,
-          complains: userExist.complains,
-          role: userExist.role,
-        },
-      });
-    } else
-      return res
-        .status(403)
-        .json({ message: "Please recheck your credentials." });
-  } catch (error: any) {
-    return res
-      .status(500)
-      .json({ success: false, message: "Could not read database.", error });
   }
 };

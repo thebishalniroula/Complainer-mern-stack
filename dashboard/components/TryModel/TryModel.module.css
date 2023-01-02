@@ -1,0 +1,15 @@
+.div {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(217, 16, 16, 0.559);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000000000000000000000;
+}
+.box {
+  background-color: greenyellow;
+}
