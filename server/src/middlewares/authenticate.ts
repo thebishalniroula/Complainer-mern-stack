@@ -7,7 +7,8 @@ export const authenticate = (
 ) => {
   try {
     const accessToken = req.cookies["accessToken"];
-    const decoded = verifyAccessToken(accessToken);
+    if (!accessToken) return res.sendStatus(402);
+    const decoded = verifyAccessToken(accessToken.split(" ")[1]);
     if (!decoded) {
       return res.sendStatus(403);
     }

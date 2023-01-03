@@ -51,7 +51,6 @@ export const registerUser = async (req: RequestWithFile, res: Response) => {
     });
   } catch (error: any) {
     console.log("user.controller.ts", error);
-
     return res
       .status(500)
       .json({ success: false, message: "Could not create user." });

@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 export type ParamType = {
-  [key: string]: any;
+  username: string;
+  role: string;
 };
 export const generateAccessToken = (param: ParamType) => {
   return jwt.sign(param, process.env.JWT_AT_SECRET as string);

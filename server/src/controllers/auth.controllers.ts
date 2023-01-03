@@ -7,7 +7,6 @@ import { findRefreshToken, storeRefreshToken } from "../services/auth.services";
 import {
   generateAccessToken,
   generateRefreshToken,
-  ParamType,
   verifyRefreshToken,
 } from "../utils/authToken";
 
@@ -82,10 +81,12 @@ export const token = async (req: Request, res: Response) => {
   }
   const validatedRefreshToken = await findRefreshToken(refreshToken);
   if (!validatedRefreshToken) return res.sendStatus(403);
+  console.log("decoded", verifyRefreshToken(refreshToken));
 
-  const decodedRefreshToken = verifyRefreshToken(refreshToken);
-  const accessToken = generateAccessToken(decodedRefreshToken as ParamType);
-  res.cookie("accessToken", accessToken, {
+  const { username, role } = verifyRefreshToken(refreshToken) as any;
+
+  const accessToken = generateAccessToken({ username, role });
+  res.cookie("accessToken", `Bearer ${accessToken}`, {
     httpOnly: true,
     maxAge: 1000 * 10,
   });
