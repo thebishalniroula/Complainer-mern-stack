@@ -9,4 +9,4 @@ const tokenSchema = new mongoose.Schema<IToken>({
   },
 });
 
-export default mongoose.model("RefreshToken", tokenSchema);
+export default mongoose.model<IToken>("RefreshToken", tokenSchema);

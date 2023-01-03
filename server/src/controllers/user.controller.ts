@@ -1,14 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { UploadedFile } from "express-fileupload";
-import {
-  validateExistingUser,
-  validateNewUser,
-} from "../utils/validators/user";
-import { createUser, findByEmailOrPassword } from "../services/user.services";
+import { validateNewUser } from "../utils/validators/user";
+import { createUser } from "../services/user.services";
 import User, { UserType } from "../Models/User";
-import { compareHash } from "../utils/hashString";
 import { Types } from "mongoose";
-import * as token from "../utils/authToken";
 interface RequestWithFile extends Request {
   files: {
     [key: string]: UploadedFile;
@@ -34,13 +29,16 @@ export const registerUser = async (req: RequestWithFile, res: Response) => {
     } else
       return res.json({ success: false, message: "Email already exists." });
   }
-  if (!req.files.avatar.mimetype.includes("image")) {
-    return res
-      .status(400)
-      .json({ success: false, message: "Profile picture must be an image." });
+
+  if (req?.files?.avatar) {
+    if (!req.files.avatar.mimetype.includes("image")) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Profile picture must be an image." });
+    }
   }
   try {
-    const user = await createUser(req.body, req.files.avatar);
+    const user = await createUser(req.body, req?.files?.avatar || null);
     return res.status(200).json({
       success: true,
       user: {
@@ -52,6 +50,10 @@ export const registerUser = async (req: RequestWithFile, res: Response) => {
       },
     });
   } catch (error: any) {
-    return res.status(500).json({ success: false, message: error });
+    console.log("user.controller.ts", error);
+
+    return res
+      .status(500)
+      .json({ success: false, message: "Could not create user." });
   }
 };

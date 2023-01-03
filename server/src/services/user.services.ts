@@ -6,26 +6,25 @@ import { hashString } from "../utils/hashString";
 
 export const createUser = async (
   userDetails: UserType,
-  avatar: UploadedFile
+  avatar: UploadedFile | null
 ): Promise<
   Document<unknown, any, UserType> &
     UserType & {
       _id: Types.ObjectId;
     }
 > => {
+  const result =
+    avatar && (await saveFileToCloudinary(avatar, userDetails.username));
+  const user: HydratedDocument<UserType> = new User({
+    ...userDetails,
+    password: await hashString(userDetails.password),
+    avatar: result && result.secure_url,
+  });
   try {
-    const result = await saveFileToCloudinary(avatar, userDetails.username);
-    const user: HydratedDocument<UserType> = new User({
-      ...userDetails,
-      password: await hashString(userDetails.password),
-      avatar: result.secure_url,
-    });
-    try {
-      return await user.save();
-    } catch (error: any) {
-      return error;
-    }
+    return await user.save();
   } catch (error: any) {
+    console.log("user.services.ts", error);
+
     return error;
   }
 };

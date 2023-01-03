@@ -46,12 +46,12 @@ export const login = async (req: RequestWithUser, res: Response) => {
           message: "Could not generate/store refresh token",
         });
       }
+
+      res.cookie("refreshToken", `Bearer ${refreshToken}`, { httpOnly: true });
       res.cookie("accessToken", `Bearer ${accessToken}`, {
         httpOnly: true,
-        maxAge: 1000 * 60 * 5,
+        maxAge: 1000 * 10,
       });
-      res.cookie("refreshToken", `Bearer ${refreshToken}`, { httpOnly: true });
-
       return res.status(200).json({
         sucess: true,
         message: "User found",
@@ -75,13 +75,19 @@ export const login = async (req: RequestWithUser, res: Response) => {
 };
 
 export const token = async (req: Request, res: Response) => {
-  const refreshToken: string | null = req.cookies["accessToken"];
-  if (refreshToken === null) {
-    return res.sendStatus(402);
+  const refreshToken =
+    req.cookies["refreshToken"] && req.cookies["refreshToken"].split(" ")[1];
+  if (!refreshToken) {
+    return res.sendStatus(401);
   }
-  const decoded = verifyRefreshToken(refreshToken);
-  if (!decoded) return res.sendStatus(403);
-  const accessToken = generateAccessToken(decoded as ParamType);
-  res.cookie("accessToken", accessToken);
+  const validatedRefreshToken = await findRefreshToken(refreshToken);
+  if (!validatedRefreshToken) return res.sendStatus(403);
+
+  const decodedRefreshToken = verifyRefreshToken(refreshToken);
+  const accessToken = generateAccessToken(decodedRefreshToken as ParamType);
+  res.cookie("accessToken", accessToken, {
+    httpOnly: true,
+    maxAge: 1000 * 10,
+  });
   res.sendStatus(200);
 };

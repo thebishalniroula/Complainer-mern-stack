@@ -1,8 +1,8 @@
 import RefreshToken from "../Models/RefreshToken";
 
 export const storeRefreshToken = async (refreshToken: string) => {
+  const token = new RefreshToken({ refreshToken });
   try {
-    const token = new RefreshToken(refreshToken);
     return await token.save();
   } catch (error) {
     return null;
