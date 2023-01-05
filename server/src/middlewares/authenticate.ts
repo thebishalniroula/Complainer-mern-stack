@@ -16,7 +16,10 @@ export const authenticate = async (
     if (!decoded) {
       return res.sendStatus(403);
     }
-    const user = await User.findOne({ username: decoded.username });
+    const user = await User.findOne({ username: decoded.username }).populate(
+      "forms",
+      "title"
+    );
     if (user) {
       req.user = user;
       return next();

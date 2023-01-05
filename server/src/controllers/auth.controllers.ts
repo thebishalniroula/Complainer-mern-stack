@@ -81,10 +81,7 @@ export const token = async (req: Request, res: Response) => {
   }
   const validatedRefreshToken = await findRefreshToken(refreshToken);
   if (!validatedRefreshToken) return res.sendStatus(403);
-  console.log("decoded", verifyRefreshToken(refreshToken));
-
   const { username, role } = verifyRefreshToken(refreshToken) as any;
-
   const accessToken = generateAccessToken({ username, role });
   res.cookie("accessToken", `Bearer ${accessToken}`, {
     httpOnly: true,

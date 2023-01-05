@@ -1,11 +1,12 @@
 import Form, { IForm } from "../Models/Form";
-
-export const storeFormToDb = async (form: IForm) => {
+import User from "../Models/User";
+export const storeFormToDbAndUpdateUser = async (form: IForm) => {
   const newForm = new Form(form);
   console.log(form);
 
   try {
-    return await newForm.save();
+    const savedForm = await newForm.save();
+    await User.findByIdAndUpdate(form.belongsTo, { forms: savedForm._id });
   } catch (error) {
     console.log("form.services.ts", error);
     return null;

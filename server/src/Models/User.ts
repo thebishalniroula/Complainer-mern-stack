@@ -7,6 +7,7 @@ export interface UserType {
   password: string;
   avatar?: string;
   complains?: Types.ObjectId[];
+  forms?: Types.ObjectId[];
   role: "organization" | "user";
 }
 
@@ -37,6 +38,12 @@ const userSchema = new mongoose.Schema<UserType>({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Complain",
+    },
+  ],
+  forms: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Form",
     },
   ],
   role: {

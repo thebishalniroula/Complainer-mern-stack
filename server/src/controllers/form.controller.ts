@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { storeFormToDb } from "../services/form.services";
+import { storeFormToDbAndUpdateUser } from "../services/form.services";
 import { UserType } from "../Models/User";
 import { ObjectIdType } from "../Models/Form";
+
 export const createForm = async (
   req: Request & {
     user: UserType & { _id: ObjectIdType };
@@ -11,7 +12,11 @@ export const createForm = async (
   const { title, fields } = req.body;
   console.log(req.body.fields);
   try {
-    await storeFormToDb({ title, fields, belongsTo: req.user._id });
+    await storeFormToDbAndUpdateUser({
+      title,
+      fields,
+      belongsTo: req.user._id,
+    });
     res.send("successfull");
   } catch (error) {
     console.log("form.controller.ts", error);
