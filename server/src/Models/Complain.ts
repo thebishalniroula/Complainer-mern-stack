@@ -14,7 +14,7 @@ const complainSchema = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    ref: "Form",
   },
 });
 export default mongoose.model("complain", complainSchema);

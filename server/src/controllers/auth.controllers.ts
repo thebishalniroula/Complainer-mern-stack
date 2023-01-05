@@ -49,7 +49,7 @@ export const login = async (req: RequestWithUser, res: Response) => {
       res.cookie("refreshToken", `Bearer ${refreshToken}`, { httpOnly: true });
       res.cookie("accessToken", `Bearer ${accessToken}`, {
         httpOnly: true,
-        maxAge: 1000 * 10,
+        maxAge: 1000 * 60 * 10,
       });
       return res.status(200).json({
         sucess: true,
@@ -88,7 +88,7 @@ export const token = async (req: Request, res: Response) => {
   const accessToken = generateAccessToken({ username, role });
   res.cookie("accessToken", `Bearer ${accessToken}`, {
     httpOnly: true,
-    maxAge: 1000 * 10,
+    maxAge: 1000 * 60 * 10,
   });
   res.sendStatus(200);
 };

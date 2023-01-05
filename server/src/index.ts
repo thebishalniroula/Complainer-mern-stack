@@ -3,6 +3,7 @@ import fileUpload from "express-fileupload";
 import userRouter from "./routes/user.routes";
 import authRouter from "./routes/auth.routes";
 import complainsRouter from "./routes/complains.routes";
+import formRouter from "./routes/form.routes";
 import { connectToDb } from "./config/db.config";
 import { configureCloudinary } from "./config/cloudinary.config";
 import cookieParser from "cookie-parser";
@@ -30,8 +31,9 @@ app.use(
 
 //Routes
 app.use("/api/user", userRouter);
-app.use("/api/complains", complainsRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/complains", complainsRouter);
+app.use("/api/forms", formRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
